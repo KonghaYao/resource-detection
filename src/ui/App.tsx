@@ -1,18 +1,15 @@
 import { ajaxSource } from "../detect/Ajax";
-import "../proxy/index";
 import { Root, CommandPalette, Action } from "@cn-ui/command-palette";
-
-import "@cn-ui/command-palette/pkg-dist/style.css";
+import "@cn-ui/command-palette/pkg-dist/style.css?inline";
 import { Atom, atom, reflect } from "@cn-ui/use";
 import { defineAction } from "@cn-ui/command-palette";
+import { videoDetect, videoStore } from "../detect/video";
+import { Component, createEffect, onMount, Show } from "solid-js";
+import { downloadActions } from "../downloader";
 
 export const getBody = () => {
     return [...document.body.children].filter((i) => i.id !== __GlobalID__);
 };
-import { videoDetect, videoStore } from "../detect/video";
-import { Component, Context, createEffect, onMount, Show } from "solid-js";
-import { downloadActions } from "../downloader";
-
 const detect = () => {
     console.log("执行嗅探");
     videoDetect();

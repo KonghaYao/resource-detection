@@ -7,7 +7,6 @@
 import { atom } from "@cn-ui/use";
 import { saveAs } from "file-saver";
 import { MediaSourceToMSEF } from "./MSEF/MediaSourceToMSEF";
-import { getExt } from "../ui/getExt";
 import { getName } from "../ui/getName";
 
 export type Source = {

@@ -12,7 +12,7 @@
         "isolatedModules": false,
         "resolveJsonModule": true,
         "paths": {
-            "self": ["."]
+            "self": ["./src/index.ts"]
         }
     },
     "include": ["src/**/*", "story/**/*", "demo/**/*.tsx"]
