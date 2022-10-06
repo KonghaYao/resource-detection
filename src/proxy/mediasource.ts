@@ -13,6 +13,7 @@ import { getName } from "../ui/getName";
 export type Source = {
     mime: string;
     bufferList: ArrayBuffer[];
+    offsets: number[];
     end: boolean;
     result?: Blob;
 };
@@ -31,18 +32,24 @@ globalThis.MediaSource.prototype.addSourceBuffer = function (mime) {
     let sourceBuffer: SourceBuffer = _addSourceBuffer.call(this, mime);
     let _append = sourceBuffer.appendBuffer;
     let bufferList = [];
+    let offsets = [];
     SourceMap((i) => {
         i.set(sourceBuffer, {
             mime,
             bufferList,
+            offsets,
             end: false,
         });
         return i;
     });
     // 创建 SourceBuffer，但是经过代理后，添加 buffer 的操作可以被获悉
-    sourceBuffer.appendBuffer = function (buffer: ArrayBuffer) {
+    sourceBuffer.appendBuffer = function (
+        this: SourceBuffer,
+        buffer: ArrayBuffer
+    ) {
         console.log("接收到新分片");
         bufferList.push(buffer);
+        offsets.push(this.timestampOffset);
         _append.call(this, buffer);
     };
     return sourceBuffer;

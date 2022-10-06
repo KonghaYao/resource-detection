@@ -12,7 +12,7 @@ const VideoTest = () => {
                 <source src="https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_30mb.mp4"></source>
             </video>
             <video id="vid2" class="video-js" controls>
-                <source src="https://stream.mux.com/5g1hMA6dKAe8DCgBB901DYB200U65ev2y00.m3u8"></source>
+                <source src="https://stream.mux.com/dt7i6WNyYd8ns4V2AeJHWNKaw00aiChpR.m3u8"></source>
             </video>
         </>
     );
@@ -33,6 +33,7 @@ export const App = () => {
                     const file = (e.target as any).files[0] as File;
                     const data = await file.arrayBuffer();
                     const media = await MSEFToMediaSource(new Uint8Array(data));
+
                     src(URL.createObjectURL(media));
                 }}></input>
             {src() && (
@@ -47,6 +48,6 @@ export const App = () => {
 };
 import { createEffect, onMount } from "solid-js";
 import { render } from "solid-js/web";
-import { MSEFToMediaSource } from "../src/proxy/MSEF/MediaSourceToMSEF";
+import { MSEFToMediaSource } from "../src/proxy/MSEF/MSEFToMediaSource";
 import { atom } from "@cn-ui/use";
 render(() => <App></App>, document.body);

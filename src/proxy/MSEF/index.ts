@@ -8,7 +8,7 @@ export const bufferToStr = async (buffer: ArrayBuffer) => {
     return blob.text();
 };
 type Input = {
-    data: { mime: string; buffers: Uint8Array[] }[];
+    data: { mime: string; buffers: Uint8Array[]; offsets: number[] }[];
     slice: number[];
 };
 
