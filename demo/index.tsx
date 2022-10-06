@@ -43,6 +43,9 @@ export const App = () => {
                     controls
                     src={src()}></video>
             )}
+            <audio
+                src="https://sample-videos.com/audio/mp3/crowd-cheering.mp3"
+                controls></audio>
         </div>
     );
 };

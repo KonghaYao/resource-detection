@@ -12,7 +12,7 @@ type Input = {
     slice: number[];
 };
 
-const combineBinary = (parts: Uint8Array[]) => {
+export const combineBinary = (parts: Uint8Array[]) => {
     const sum = parts.reduce((col, i) => {
         return col + i.byteLength;
     }, 0);

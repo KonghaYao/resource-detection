@@ -1,5 +1,5 @@
 /**
- * @zh
+ * @zh 这个脚本代理 MediaSource 并且生成 SourceBuffer 记录
  * @description 修改自 https://github.com/Momo707577045/media-source-extract/blob/master/media-source-extract.user.js
  *
  */
@@ -8,6 +8,18 @@ import { atom } from "@cn-ui/use";
 import { saveAs } from "file-saver";
 import { MediaSourceToMSEF } from "./MSEF/MediaSourceToMSEF";
 import { getName } from "../ui/getName";
+
+// 流式下载支持度不广
+// import streamSaver from "streamsaver";
+
+// const streamSave = (chunks: Uint8Array[], name: string) => {
+//     const fileStream = streamSaver.createWriteStream(name, {});
+//     const writer = fileStream.getWriter();
+//     chunks.forEach((i) => {
+//         writer.write(i);
+//     });
+//     writer.close();
+// };
 
 export type Source = {
     mime: string;

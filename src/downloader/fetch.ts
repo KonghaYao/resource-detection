@@ -4,7 +4,7 @@ import { getName } from "../ui/getName";
 export const FetchAction = defineAction({
     id: "fetch-download",
     title: "普通下载",
-    subtitle: "通过 fetch 下载文件, 对于某些视频资源会失效",
+    subtitle: "通过 fetch 下载文件, 对于某些资源会失效",
 
     run(args) {
         const action = args.rootContext.target as Action & { src: string };

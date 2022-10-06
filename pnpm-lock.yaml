@@ -30,6 +30,7 @@ specifiers:
   rollup-plugin-visualizer: ^5.8.2
   solid-js: ^1.5.7
   solid-transition-group: ^0.0.11
+  streamsaver: ^2.0.6
   style-inject: ^0.3.0
   tailwindcss: ^3.1.8
   tinykeys: ^1.4.0
@@ -37,6 +38,7 @@ specifiers:
   vite: ^3.0.9
   vite-plugin-solid: ^2.3.0
   vitest: ^0.23.4
+  web-streams-polyfill: ^3.2.1
 
 dependencies:
   '@cn-ui/command-palette': 2.1.0_u6gnrzg2ktxpyhhxum4q3k6s5e
@@ -58,8 +60,10 @@ dependencies:
   m3u8-parser: 6.0.0
   mitt: 3.0.0
   solid-transition-group: 0.0.11_solid-js@1.5.7
+  streamsaver: 2.0.6
   style-inject: 0.3.0
   tinykeys: 1.4.0
+  web-streams-polyfill: 3.2.1
 
 devDependencies:
   '@types/file-saver': 2.0.5
@@ -2093,6 +2097,10 @@ packages:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     dev: true
 
+  /streamsaver/2.0.6:
+    resolution: {integrity: sha512-LK4e7TfCV8HzuM0PKXuVUfKyCB1FtT9L0EGxsFk5Up8njj0bXK8pJM9+Wq2Nya7/jslmCQwRK39LFm55h7NBTw==}
+    dev: false
+
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -2397,6 +2405,11 @@ packages:
       - supports-color
       - terser
     dev: true
+
+  /web-streams-polyfill/3.2.1:
+    resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
+    engines: {node: '>= 8'}
+    dev: false
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}

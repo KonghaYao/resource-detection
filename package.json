@@ -51,7 +51,9 @@
         "m3u8-parser": "^6.0.0",
         "mitt": "^3.0.0",
         "solid-transition-group": "^0.0.11",
+        "streamsaver": "^2.0.6",
         "style-inject": "^0.3.0",
-        "tinykeys": "^1.4.0"
+        "tinykeys": "^1.4.0",
+        "web-streams-polyfill": "^3.2.1"
     }
 }

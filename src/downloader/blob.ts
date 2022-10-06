@@ -1,10 +1,12 @@
 import { Action, defineAction } from "@cn-ui/command-palette";
 import { saveAs } from "file-saver";
-import { saveRecord } from "../proxy/mediasource";
 import { urlStore } from "../proxy/ObjectUrl";
 import { getName } from "../ui/getName";
 
-const AutoLoad = async (origin: MediaSource, video: HTMLVideoElement) => {
+export const AutoLoad = async (
+    origin: MediaSource,
+    video: HTMLVideoElement
+) => {
     const buffer = origin.sourceBuffers[0];
     console.warn("开始视频自动加载");
     let last = 0;
@@ -40,7 +42,7 @@ const AutoLoad = async (origin: MediaSource, video: HTMLVideoElement) => {
 export const BlobAction = defineAction({
     id: "blob-download",
     title: "Blob 下载",
-    subtitle: "通过 Blob 下载文件",
+    subtitle: "通过 Blob 下载文件，音视频文件无效",
     cond(args) {
         const action = args.rootContext.target as Action & { src: string };
         return action.src.startsWith("blob:");
@@ -50,37 +52,9 @@ export const BlobAction = defineAction({
         const origin = urlStore().get(action.src);
         console.log(origin);
         if (origin instanceof MediaSource) {
-            const dom: HTMLVideoElement = document.querySelector(
-                `video[src='${action.src}']`
-            );
-            AutoLoad(origin, dom).then(() => {
-                saveRecord(origin, action.src);
-            });
+            throw new Error("这是一个视频");
         } else {
             saveAs(new Blob([origin]), getName(action.src));
-        }
-    },
-});
-
-export const BlobNow = defineAction({
-    id: "blob-download-now",
-    title: "Blob 下载当前进度",
-    subtitle: "通过 Blob 下载当前视频进度的文件",
-    cond(args) {
-        const action = args.rootContext.target as Action & { src: string };
-        return (
-            action.src.startsWith("blob:") && action.keywords.includes("video")
-        );
-    },
-    run(args) {
-        const action = args.rootContext.target as Action & { src: string };
-        const origin = urlStore().get(action.src);
-        console.log("探测到原始blob数据", origin);
-        if (origin instanceof MediaSource) {
-            /** TODO 音视频轨道分开问题 */
-            saveRecord(origin, action.src);
-        } else {
-            throw new Error("这个不是视频");
         }
     },
 });

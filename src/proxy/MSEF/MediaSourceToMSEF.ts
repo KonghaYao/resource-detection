@@ -1,9 +1,12 @@
-import { encode } from "./index";
+import { combineBinary, encode, encodeToStream } from "./index";
 import { SourceMap } from "../mediasource";
 
 /** 非纯函数，需要使用到全局的存储库 */
 export const MediaSourceToMSEF = async (media: MediaSource) => {
-    return encode({
+    return combineBinary(await MediaSourceToMSEFChunks(media));
+};
+export const MediaSourceToMSEFChunks = async (media: MediaSource) => {
+    return encodeToStream({
         data: [...media.sourceBuffers].map((i) => {
             const origin = SourceMap().get(i);
             return {

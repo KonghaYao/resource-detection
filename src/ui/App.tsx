@@ -2,7 +2,7 @@ import { ajaxSource } from "../detect/Ajax";
 import { Root, CommandPalette, Action } from "@cn-ui/command-palette";
 import { Atom, atom, reflect } from "@cn-ui/use";
 import { defineAction } from "@cn-ui/command-palette";
-import { videoDetect, videoStore } from "../detect/video";
+import { videoDetect, mediaStore, audioDetect } from "../detect/video";
 import { Component, createEffect, onMount, Show } from "solid-js";
 import { downloadActions } from "../downloader";
 
@@ -14,6 +14,7 @@ export const getBody = () => {
 const detect = () => {
     console.log("执行嗅探");
     videoDetect();
+    audioDetect();
 };
 
 export const App = () => {
@@ -29,7 +30,7 @@ export const App = () => {
             : str;
     };
     const actions = reflect(() => {
-        const Inputs = [...ajaxSource(), ...videoStore().values()] as Action[];
+        const Inputs = [...ajaxSource(), ...mediaStore().values()] as Action[];
         return Inputs.map((i, index) => {
             return defineAction({
                 ...i,
