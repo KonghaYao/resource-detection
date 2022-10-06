@@ -4,6 +4,7 @@ import { FetchAction } from "./fetch";
 import { BlobAction } from "./blob";
 import { MediaNow, MediaAll } from "./media";
 import { M3U8Action } from "./m3u8";
+import { CORSAction } from "./cors";
 
 export const downloadActions = atom<Action[]>([
     FetchAction,
@@ -11,4 +12,5 @@ export const downloadActions = atom<Action[]>([
     BlobAction,
     MediaAll,
     MediaNow,
+    CORSAction,
 ]);

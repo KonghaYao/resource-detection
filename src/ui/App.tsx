@@ -2,7 +2,7 @@ import { ajaxSource } from "../detect/Ajax";
 import { Root, CommandPalette, Action } from "@cn-ui/command-palette";
 import { Atom, atom, reflect } from "@cn-ui/use";
 import { defineAction } from "@cn-ui/command-palette";
-import { videoDetect, mediaStore, audioDetect } from "../detect/video";
+import { videoDetect, mediaStore, audioDetect } from "../detect/media";
 import { Component, createEffect, onMount, Show } from "solid-js";
 import { downloadActions } from "../downloader";
 

@@ -17,6 +17,7 @@ export const mediaStore = atom(
     { equals: false }
 );
 
+/** audio 经常会遇到 CORS 协议 */
 export const audioDetect = () => {
     batch(() => {
         const els = getBody();
