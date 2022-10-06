@@ -6,7 +6,7 @@
 
 import { atom } from "@cn-ui/use";
 import { saveAs } from "file-saver";
-import { getName } from "../ui/getName";
+import { getExt } from "../ui/getExt";
 
 export type Source = {
     mime: string;
@@ -19,11 +19,17 @@ export const SourceMap = atom(new Map<SourceBuffer, Source>(), {
     equals: false,
 });
 console.log(SourceMap());
-export const saveRecord = (record: Source, name: string) => {
-    const mime = record.mime.split(";")[0];
-    const blob = new Blob(record.bufferList, { type: mime });
-    record.result = blob;
-    saveAs(record.result, name);
+export const saveRecord = async (records: Source[], name: string) => {
+    let names = [];
+    await records.reduce(async (col, record) => {
+        return col.then(async (res) => {
+            const mime = record.mime.split(";")[0];
+            const type = mime.split("/")[1];
+
+            names.push(name);
+        });
+    }, Promise.resolve());
+    saveAs(new Blob([buffer], { type: "video/mp4" }), name);
 };
 // 录取资源
 let _addSourceBuffer = globalThis.MediaSource.prototype.addSourceBuffer;

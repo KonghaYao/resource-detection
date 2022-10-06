@@ -5,6 +5,10 @@ export default defineConfig({
     plugins: [solidPlugin()],
     server: {
         port: 3000,
+        headers: {
+            "Cross-Origin-Embedder-Policy": "require-corp",
+            "Cross-Origin-Opener-Policy": "same-origin",
+        },
     },
     define: {
         global: "globalThis",
@@ -16,6 +20,7 @@ export default defineConfig({
         },
         // mainFields: ["browser", "module", "jsnext:main", "jsnext"],
     },
+
     optimizeDeps: {
         esbuildOptions: {
             target: "esnext",
@@ -32,8 +37,5 @@ export default defineConfig({
             formats: ["umd"],
         },
         sourcemap: true,
-    },
-    test: {
-        environment: "happy-dom",
     },
 });

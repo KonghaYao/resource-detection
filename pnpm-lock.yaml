@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@cn-ui/command-palette': ^2.1.0
   '@cn-ui/use': ^1.2.0
+  '@ffmpeg/ffmpeg': ^0.11.5
   '@fontsource/material-icons': ^4.5.4
   '@pollyjs/adapter-fetch': ^6.0.5
   '@pollyjs/adapter-xhr': ^6.0.5
@@ -20,7 +21,7 @@ specifiers:
   copy-to-clipboard: ^3.3.2
   file-saver: ^2.0.5
   fuse.js: ^6.6.2
-  happy-dom: ^6.0.4
+  happy-dom: ^7.0.0
   lodash-es: ^4.17.21
   m3u8-parser: ^6.0.0
   mitt: ^3.0.0
@@ -37,6 +38,7 @@ specifiers:
 dependencies:
   '@cn-ui/command-palette': 2.1.0_u6gnrzg2ktxpyhhxum4q3k6s5e
   '@cn-ui/use': 1.2.0_solid-js@1.5.7
+  '@ffmpeg/ffmpeg': 0.11.5
   '@fontsource/material-icons': 4.5.4
   '@pollyjs/adapter-fetch': 6.0.5
   '@pollyjs/adapter-xhr': 6.0.5
@@ -61,14 +63,14 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   autoprefixer: 10.4.12_postcss@8.4.17
   browserslist: 4.21.4
-  happy-dom: 6.0.4
+  happy-dom: 7.0.0
   postcss: 8.4.17
   solid-js: 1.5.7
   tailwindcss: 3.1.8_postcss@8.4.17
   video.js: 7.20.3
   vite: 3.1.4
   vite-plugin-solid: 2.3.9_solid-js@1.5.7+vite@3.1.4
-  vitest: 0.23.4_happy-dom@6.0.4
+  vitest: 0.23.4_happy-dom@7.0.0
 
 packages:
 
@@ -434,6 +436,18 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@ffmpeg/ffmpeg/0.11.5:
+    resolution: {integrity: sha512-btdfI4bJ7Whqi10GJPcvvIfg22sN9LU5qw7Dbmpqts12enYEWWym+i1TBj1emvwIkDa2yxr61P2HECaELQWjGA==}
+    engines: {node: '>=12.16.1'}
+    dependencies:
+      is-url: 1.2.4
+      node-fetch: 2.6.7
+      regenerator-runtime: 0.13.9
+      resolve-url: 0.2.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /@fontsource/material-icons/4.5.4:
     resolution: {integrity: sha512-YGmXkkEdu6EIgpFKNmB/nIXzZocwSmbI01Ninpmml8x8BT0M6RR++V1KqOfpzZ6Cw/FQ2/KYonQ3x4IY/4VRRA==}
@@ -1353,8 +1367,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /happy-dom/6.0.4:
-    resolution: {integrity: sha512-b+ID23Ms0BY08UNLymsOMG7EI2jSlwEt4cbJs938GZfeNAg+fqgkSO3TokQMgSOFoHznpjWmpVjBUL5boJ9PWw==}
+  /happy-dom/7.0.0:
+    resolution: {integrity: sha512-nLhVhWIf4M4SIm2hBqAb1rshuAyzJwgD0iJtWeXa07poPdhiR99o0A+JxCOquJWWSFkCREynMNbbvA6sGEz/cQ==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
@@ -1464,6 +1478,10 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
     dev: true
+
+  /is-url/1.2.4:
+    resolution: {integrity: sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==}
+    dev: false
 
   /is-what/4.1.7:
     resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
@@ -1628,7 +1646,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: true
 
   /node-releases/2.0.6:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
@@ -1824,6 +1841,11 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+    dev: false
+
+  /resolve-url/0.2.1:
+    resolution: {integrity: sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==}
+    deprecated: https://github.com/lydell/resolve-url#deprecated
     dev: false
 
   /resolve/1.22.1:
@@ -2057,7 +2079,6 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: true
 
   /ts-toolbelt/9.6.0:
     resolution: {integrity: sha512-nsZd8ZeNUzukXPlJmTBwUAuABDe/9qtVDelJeT/qW0ow3ZS3BsQJtNkan1802aM9Uf68/Y8ljw86Hu0h5IUW3w==}
@@ -2172,7 +2193,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.4_happy-dom@6.0.4:
+  /vitest/0.23.4_happy-dom@7.0.0:
     resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -2199,7 +2220,7 @@ packages:
       '@types/node': 18.8.0
       chai: 4.3.6
       debug: 4.3.4
-      happy-dom: 6.0.4
+      happy-dom: 7.0.0
       local-pkg: 0.4.2
       strip-literal: 0.4.2
       tinybench: 2.3.0
@@ -2216,7 +2237,6 @@ packages:
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: true
 
   /webidl-conversions/7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
@@ -2240,7 +2260,6 @@ packages:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
-    dev: true
 
   /xtend/4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}

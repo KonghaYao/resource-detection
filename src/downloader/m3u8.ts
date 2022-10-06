@@ -48,6 +48,7 @@ export const M3U8Action = defineAction({
     },
     run(args) {
         const action = args.rootContext.target as Action & { src: string };
+        console.log(action.src);
         m3u8Downloader(action.src).then((blob) => {
             saveAs(blob, getName(action.src) + ".flv");
         });

@@ -53,18 +53,7 @@ export const BlobAction = defineAction({
             const dom: HTMLVideoElement = document.querySelector(
                 `video[src='${action.src}']`
             );
-            AutoLoad(origin, dom)
-                .then(() => {
-                    console.log("视频自动加载完成");
-                })
-                .then(() => {
-                    [...origin.sourceBuffers].forEach((col) => {
-                        const record = SourceMap().get(col);
-
-                        saveRecord(record, getName(action.src));
-                        console.warn("需要等待视频加载完成");
-                    });
-                });
+            AutoLoad(origin, dom).then(() => {});
         } else {
             saveAs(new Blob([origin]), getName(action.src));
         }
@@ -87,10 +76,6 @@ export const BlobNow = defineAction({
         console.log("探测到原始blob数据", origin);
         if (origin instanceof MediaSource) {
             /** TODO 音视频轨道分开问题 */
-            [...origin.sourceBuffers].forEach((buffer) => {
-                const record = SourceMap().get(buffer);
-                saveRecord(record, getName(action.src));
-            });
         } else {
             throw new Error("这个不是视频");
         }

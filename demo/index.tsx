@@ -12,7 +12,7 @@ const VideoTest = () => {
                 <source src="https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_30mb.mp4"></source>
             </video>
             <video id="vid2" class="video-js" controls>
-                <source src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"></source>
+                <source src="https://stream.mux.com/5g1hMA6dKAe8DCgBB901DYB200U65ev2y00.m3u8"></source>
             </video>
         </>
     );
