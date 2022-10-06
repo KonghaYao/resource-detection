@@ -58,7 +58,7 @@ export const App = () => {
             <div
                 ref={root}
                 id={__GlobalID__}
-                class="absolute"
+                class="fixed"
                 style={{ "z-index": "99999999" }}>
                 {root() && (
                     <Root

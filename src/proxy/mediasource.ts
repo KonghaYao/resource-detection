@@ -41,7 +41,6 @@ export const saveRecord = async (records: MediaSource, name: string) => {
 let _addSourceBuffer = globalThis.MediaSource.prototype.addSourceBuffer;
 globalThis.MediaSource.prototype.addSourceBuffer = function (mime) {
     let sourceBuffer: SourceBuffer = _addSourceBuffer.call(this, mime);
-    let _append = sourceBuffer.appendBuffer;
     let bufferList = [];
     let offsets = [];
     SourceMap((i) => {
@@ -54,9 +53,10 @@ globalThis.MediaSource.prototype.addSourceBuffer = function (mime) {
         return i;
     });
     // 创建 SourceBuffer，但是经过代理后，添加 buffer 的操作可以被获悉
+    let _append = sourceBuffer.appendBuffer;
     sourceBuffer.appendBuffer = function (
         this: SourceBuffer,
-        buffer: ArrayBuffer
+        buffer: BufferSource
     ) {
         console.log("接收到新分片");
         bufferList.push(buffer);
@@ -67,9 +67,9 @@ globalThis.MediaSource.prototype.addSourceBuffer = function (mime) {
 };
 // 监听资源全部录取成功
 let _endOfStream = globalThis.MediaSource.prototype.endOfStream;
-globalThis.MediaSource.prototype.endOfStream = function () {
+globalThis.MediaSource.prototype.endOfStream = function (error) {
     // 资源捕获完成
-    _endOfStream.call(this);
+    _endOfStream.call(this, error);
     console.log("视频加载完成");
     const record = SourceMap().get(this)!;
     record.end = true;

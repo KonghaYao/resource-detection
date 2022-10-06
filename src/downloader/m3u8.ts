@@ -42,9 +42,11 @@ export const M3U8Action = defineAction({
     subtitle: "通过下载 m3u8 分片下载文件, 下载文件无法查看可能是后缀名问题",
     cond({ rootContext }) {
         const action = rootContext.target as Action;
-        return [".m3u8", "video"].some((i) => {
-            return action.keywords.includes(i);
-        });
+        return (
+            [".m3u8", "video"].some((i) => {
+                return action.keywords.includes(i);
+            }) && !action.keywords.includes("blob")
+        );
     },
     run(args) {
         const action = args.rootContext.target as Action & { src: string };

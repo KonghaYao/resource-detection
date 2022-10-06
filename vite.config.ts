@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 import { visualizer } from "rollup-plugin-visualizer";
 import externalGlobals from "rollup-plugin-external-globals";
+import banner from "vite-plugin-banner";
+import fs from "fs";
 // externalGlobals({
 //     react: "React",
 //     "react-dom": "ReactDOM",
@@ -13,6 +15,10 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [
             solidPlugin(),
+            banner({
+                content: fs.readFileSync("./banner.js", "utf-8"),
+                verify: false,
+            }),
             mode === "analyze" &&
                 visualizer({ open: true, filename: "visualizer/stat.html" }),
         ],
@@ -25,6 +31,8 @@ export default defineConfig(({ mode }) => {
         },
         resolve: {
             alias: {
+                "@sinonjs/commons": "./src/detect/sinon_polyfill.cjs",
+                "@sinonjs/text-encoding": "./src/detect/sinon_polyfill.cjs",
                 self:
                     mode === "preview"
                         ? "./dist/index.umd.js"

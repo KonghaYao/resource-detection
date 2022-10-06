@@ -1,15 +1,12 @@
 import { Action } from "@cn-ui/command-palette";
 import { atom } from "@cn-ui/use";
-import { BatchInterceptor } from "@mswjs/interceptors";
-import browserInterceptors from "@mswjs/interceptors/lib/presets/browser";
 import { getExt } from "../ui/getExt";
+import fakeXhr from "nise/lib/fake-xhr/index.js";
+import { FakeXHR, FakeXMLHttpRequest, FakeXMLHttpRequestStatic } from "nise";
 
-const interceptor = new BatchInterceptor({
-    name: "my-interceptor",
-    interceptors: browserInterceptors,
-});
-
-interceptor.apply();
+const fakeXHR: FakeXMLHttpRequestStatic = fakeXhr.useFakeXMLHttpRequest();
+/** @ts-ignore */
+globalThis.XMLHttpRequest = fakeXHR;
 
 export interface AjaxSource extends Partial<Action> {
     type: "ajax";
@@ -17,10 +14,8 @@ export interface AjaxSource extends Partial<Action> {
 }
 /** 记录所有 Ajax 的参数 */
 export const ajaxSource = atom<AjaxSource[]>([], { equals: false });
-// This "request" listener will be called on both
-// "http.ClientRequest" and "XMLHttpRequest" being dispatched.
-interceptor.on("request", (res) => {
-    const Url = new URL(res.url, location.href);
+fakeXHR.onCreate = (res) => {
+    const Url = new URL(res.url || "", location.href);
     ajaxSource((i) => [
         ...i,
         {
@@ -29,9 +24,40 @@ interceptor.on("request", (res) => {
             title: Url.pathname,
             subtitle: Url.toString(),
             src: Url.toString(),
-            keywords: ["ajax", res.method, getExt(Url.toString())].filter(
-                (i) => i
-            ),
+            keywords: [
+                "ajax",
+                "xhr",
+                res.method,
+                getExt(Url.toString()),
+            ].filter((i) => i),
         },
     ]);
-});
+};
+const _fetch = globalThis.fetch;
+globalThis.fetch = function (input: RequestInfo | URL, init?: RequestInit) {
+    let Url: URL;
+    if (input instanceof URL) {
+        Url = input;
+    } else if (typeof input === "string") {
+        Url = new URL(input, location.href);
+    } else {
+        Url = new URL(input.url, location.href);
+    }
+    ajaxSource((i) => [
+        ...i,
+        {
+            type: "ajax",
+            id: Date.now().toString(),
+            title: Url.pathname,
+            subtitle: Url.toString(),
+            src: Url.toString(),
+            keywords: [
+                "ajax",
+                "fetch",
+                (input as any).method || init?.method || "GET",
+                getExt(Url.toString()),
+            ].filter((i) => i),
+        },
+    ]);
+    return _fetch.call(this, input, init);
+};

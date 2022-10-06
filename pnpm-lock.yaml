@@ -16,6 +16,7 @@ specifiers:
   '@types/file-saver': ^2.0.5
   '@types/lodash': ^4.14.185
   '@types/lodash-es': ^4.17.6
+  '@types/nise': ^1.4.0
   autoprefixer: ^10.4.8
   browserslist: ^4.21.4
   buffer: ^6.0.3
@@ -26,6 +27,7 @@ specifiers:
   lodash-es: ^4.17.21
   m3u8-parser: ^6.0.0
   mitt: ^3.0.0
+  nise: ^5.1.1
   postcss: ^8.4.16
   rollup-plugin-external-globals: ^0.6.1
   rollup-plugin-visualizer: ^5.8.2
@@ -37,6 +39,7 @@ specifiers:
   tinykeys: ^1.4.0
   video.js: ^7.20.3
   vite: ^3.0.9
+  vite-plugin-banner: ^0.5.0
   vite-plugin-solid: ^2.3.0
   vitest: ^0.23.4
   web-streams-polyfill: ^3.2.1
@@ -61,6 +64,7 @@ dependencies:
   lodash-es: 4.17.21
   m3u8-parser: 6.0.0
   mitt: 3.0.0
+  nise: 5.1.1
   solid-transition-group: 0.0.11_solid-js@1.5.7
   streamsaver: 2.0.6
   style-inject: 0.3.0
@@ -71,6 +75,7 @@ devDependencies:
   '@types/file-saver': 2.0.5
   '@types/lodash': 4.14.186
   '@types/lodash-es': 4.17.6
+  '@types/nise': 1.4.0
   autoprefixer: 10.4.12_postcss@8.4.17
   browserslist: 4.21.4
   happy-dom: 7.0.0
@@ -81,6 +86,7 @@ devDependencies:
   tailwindcss: 3.1.8_postcss@8.4.17
   video.js: 7.20.3
   vite: 3.1.4
+  vite-plugin-banner: 0.5.0
   vite-plugin-solid: 2.3.9_solid-js@1.5.7+vite@3.1.4
   vitest: 0.23.4_happy-dom@7.0.0
 
@@ -710,6 +716,10 @@ packages:
   /@types/ms/0.7.31:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: false
+
+  /@types/nise/1.4.0:
+    resolution: {integrity: sha512-DPxmjiDwubsNmguG5X4fEJ+XCyzWM3GXWsqQlvUcjJKa91IOoJUy51meDr0GkzK64qqNcq85ymLlyjoct9tInw==}
+    dev: true
 
   /@types/node/10.17.60:
     resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
@@ -1981,6 +1991,16 @@ packages:
     hasBin: true
     dev: true
 
+  /nise/5.1.1:
+    resolution: {integrity: sha512-yr5kW2THW1AkxVmCnKEh4nbYkJdB3I7LUkiUgOvEkOp414mc2UMaHMA7pjq1nYowhdoJZGwEKGaQVbxfpWj10A==}
+    dependencies:
+      '@sinonjs/commons': 1.8.3
+      '@sinonjs/fake-timers': 6.0.1
+      '@sinonjs/text-encoding': 0.7.2
+      just-extend: 4.2.1
+      path-to-regexp: 1.8.0
+    dev: false
+
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
     engines: {node: 4.x || >=6.0.0}
@@ -2642,6 +2662,10 @@ packages:
     resolution: {integrity: sha512-r6IhM325fcLb1D6pgsMkTQT1PpFdUdYZa1iqk7wJEu+QlibBwATPfPc9Bg8Jiym0GE5yP1AG2rMLu+QMVWkYtA==}
     dependencies:
       global: 4.4.0
+    dev: true
+
+  /vite-plugin-banner/0.5.0:
+    resolution: {integrity: sha512-GDyecw4mb7uUeE6BFsicFOJ4sL9KWof+QNRvASXehpNNwwQVYCtB9HAjvKt6ixgvwSp6jWR1gM9dKLqNDZaEjQ==}
     dev: true
 
   /vite-plugin-solid/2.3.9_solid-js@1.5.7+vite@3.1.4:
