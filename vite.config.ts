@@ -20,15 +20,14 @@ export default defineConfig(({ mode }) => {
             port: 3000,
         },
         define: {
-            // 这是一个特别的 Bug 来源为 @pollyjs 的特殊操作
-            ...(mode === "production" ? {} : { global: "globalThis" }),
+            global: "globalThis",
             __GlobalID__: JSON.stringify("948347934738"),
         },
         resolve: {
             alias: {
                 self:
                     mode === "preview"
-                        ? "./dist/playground.umd.js"
+                        ? "./dist/index.umd.js"
                         : "./src/index.ts",
                 // 修复 global 的问题
                 globalThis: "global",
@@ -52,7 +51,7 @@ export default defineConfig(({ mode }) => {
                 formats: ["umd"],
                 fileName: "index",
             },
-            sourcemap: true,
+            sourcemap: false,
         },
     };
 });
