@@ -1,11 +1,12 @@
 import { ajaxSource } from "../detect/Ajax";
 import { Root, CommandPalette, Action } from "@cn-ui/command-palette";
-import "@cn-ui/command-palette/pkg-dist/style.css?inline";
 import { Atom, atom, reflect } from "@cn-ui/use";
 import { defineAction } from "@cn-ui/command-palette";
 import { videoDetect, videoStore } from "../detect/video";
 import { Component, createEffect, onMount, Show } from "solid-js";
 import { downloadActions } from "../downloader";
+
+import style from "@cn-ui/command-palette/pkg-dist/style.css?inline";
 
 export const getBody = () => {
     return [...document.body.children].filter((i) => i.id !== __GlobalID__);
@@ -54,34 +55,37 @@ export const App = () => {
         }
     });
     return (
-        <div
-            ref={root}
-            id={__GlobalID__}
-            class="absolute"
-            style={{ "z-index": "99999999" }}>
-            {root() && (
-                <Root
-                    visibility={visible}
-                    actions={actions}
-                    components={{
-                        ResultIcon({ action }) {
-                            return <div>{(action as any).type}</div>;
-                        },
-                    }}
-                    actionsContext={actionsContext}>
-                    <CommandPalette
-                        mount={root()}
-                        searchPlaceholder="资源搜索"
-                    />
-                </Root>
-            )}
-            <Show when={root() && nextVisible()}>
-                <NextPanel
-                    root={root()}
-                    visible={nextVisible}
-                    context={actionsContext}></NextPanel>
-            </Show>
-        </div>
+        <>
+            <style>{style}</style>
+            <div
+                ref={root}
+                id={__GlobalID__}
+                class="absolute"
+                style={{ "z-index": "99999999" }}>
+                {root() && (
+                    <Root
+                        visibility={visible}
+                        actions={actions}
+                        components={{
+                            ResultIcon({ action }) {
+                                return <div>{(action as any).type}</div>;
+                            },
+                        }}
+                        actionsContext={actionsContext}>
+                        <CommandPalette
+                            mount={root()}
+                            searchPlaceholder="资源搜索"
+                        />
+                    </Root>
+                )}
+                <Show when={root() && nextVisible()}>
+                    <NextPanel
+                        root={root()}
+                        visible={nextVisible}
+                        context={actionsContext}></NextPanel>
+                </Show>
+            </div>
+        </>
     );
 };
 

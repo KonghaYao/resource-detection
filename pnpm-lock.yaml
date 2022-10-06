@@ -30,6 +30,7 @@ specifiers:
   rollup-plugin-visualizer: ^5.8.2
   solid-js: ^1.5.7
   solid-transition-group: ^0.0.11
+  style-inject: ^0.3.0
   tailwindcss: ^3.1.8
   tinykeys: ^1.4.0
   video.js: ^7.20.3
@@ -57,6 +58,7 @@ dependencies:
   m3u8-parser: 6.0.0
   mitt: 3.0.0
   solid-transition-group: 0.0.11_solid-js@1.5.7
+  style-inject: 0.3.0
   tinykeys: 1.4.0
 
 devDependencies:
@@ -2118,6 +2120,10 @@ packages:
     dependencies:
       acorn: 8.8.0
     dev: true
+
+  /style-inject/0.3.0:
+    resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
+    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}

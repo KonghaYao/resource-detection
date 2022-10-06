@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "vite",
+        "preview": "vite --mode preview",
         "build": "vite build",
         "analyze": "vite build --mode analyze",
         "test": "vitest",
@@ -50,6 +51,7 @@
         "m3u8-parser": "^6.0.0",
         "mitt": "^3.0.0",
         "solid-transition-group": "^0.0.11",
+        "style-inject": "^0.3.0",
         "tinykeys": "^1.4.0"
     }
 }
