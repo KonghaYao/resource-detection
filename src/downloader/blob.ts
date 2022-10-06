@@ -1,6 +1,6 @@
 import { Action, defineAction } from "@cn-ui/command-palette";
 import { saveAs } from "file-saver";
-import { saveRecord, Source, SourceMap } from "../proxy/mediasource";
+import { saveRecord } from "../proxy/mediasource";
 import { urlStore } from "../proxy/ObjectUrl";
 import { getName } from "../ui/getName";
 
@@ -53,7 +53,9 @@ export const BlobAction = defineAction({
             const dom: HTMLVideoElement = document.querySelector(
                 `video[src='${action.src}']`
             );
-            AutoLoad(origin, dom).then(() => {});
+            AutoLoad(origin, dom).then(() => {
+                saveRecord(origin, action.src);
+            });
         } else {
             saveAs(new Blob([origin]), getName(action.src));
         }
@@ -76,6 +78,7 @@ export const BlobNow = defineAction({
         console.log("探测到原始blob数据", origin);
         if (origin instanceof MediaSource) {
             /** TODO 音视频轨道分开问题 */
+            saveRecord(origin, action.src);
         } else {
             throw new Error("这个不是视频");
         }

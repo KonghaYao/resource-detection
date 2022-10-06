@@ -6,7 +6,9 @@
 
 import { atom } from "@cn-ui/use";
 import { saveAs } from "file-saver";
+import { MediaSourceToMSEF } from "./MSEF/MediaSourceToMSEF";
 import { getExt } from "../ui/getExt";
+import { getName } from "../ui/getName";
 
 export type Source = {
     mime: string;
@@ -19,17 +21,9 @@ export const SourceMap = atom(new Map<SourceBuffer, Source>(), {
     equals: false,
 });
 console.log(SourceMap());
-export const saveRecord = async (records: Source[], name: string) => {
-    let names = [];
-    await records.reduce(async (col, record) => {
-        return col.then(async (res) => {
-            const mime = record.mime.split(";")[0];
-            const type = mime.split("/")[1];
-
-            names.push(name);
-        });
-    }, Promise.resolve());
-    saveAs(new Blob([buffer], { type: "video/mp4" }), name);
+export const saveRecord = async (records: MediaSource, name: string) => {
+    const buffer = await MediaSourceToMSEF(records);
+    saveAs(new Blob([buffer]), getName(name) + ".msef");
 };
 // 录取资源
 let _addSourceBuffer = globalThis.MediaSource.prototype.addSourceBuffer;

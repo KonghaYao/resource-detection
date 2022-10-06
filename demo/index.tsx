@@ -22,12 +22,31 @@ export const App = () => {
         (i) => fetch(i, { cache: "force-cache" })
     );
     fetch("./");
+    const src = atom("");
+
     return (
         <div class="absolute z-0 top-0 left-0">
             <VideoTest></VideoTest>
+            <input
+                type="file"
+                oninput={async (e) => {
+                    const file = (e.target as any).files[0] as File;
+                    const data = await file.arrayBuffer();
+                    const media = await MSEFToMediaSource(new Uint8Array(data));
+                    src(URL.createObjectURL(media));
+                }}></input>
+            {src() && (
+                <video
+                    id="video-msef"
+                    class="video-js"
+                    controls
+                    src={src()}></video>
+            )}
         </div>
     );
 };
-import { onMount } from "solid-js";
+import { createEffect, onMount } from "solid-js";
 import { render } from "solid-js/web";
+import { MSEFToMediaSource } from "../src/proxy/MSEF/MediaSourceToMSEF";
+import { atom } from "@cn-ui/use";
 render(() => <App></App>, document.body);

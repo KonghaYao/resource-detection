@@ -34,6 +34,13 @@ export const encode = async (
     file: Input,
     splitString = "__DefaultString__"
 ) => {
+    return combineBinary(await encodeToStream(file, splitString));
+};
+
+export const encodeToStream = async (
+    file: Input,
+    splitString = "__DefaultString__"
+) => {
     const slices = file.data.flatMap((i) => {
         return i.buffers;
     });
@@ -62,10 +69,9 @@ export const encode = async (
         await strToBuffer(info.byteLength.toString())
     );
     const key = new Uint8Array(await strToBuffer(splitString));
-
-    return combineBinary([header, key, info, ...slices]);
+    const stream = [header, key, info, ...slices];
+    return stream;
 };
-
 /**
  *
  *  总文件长 + 自定义分隔符 + JSON 信息 + 文件本体
