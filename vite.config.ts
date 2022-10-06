@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
                 entry: "./src/index.ts",
                 name: "index",
                 formats: ["umd"],
+                fileName: "index",
             },
             sourcemap: true,
         },

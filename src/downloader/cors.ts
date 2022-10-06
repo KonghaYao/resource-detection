@@ -7,7 +7,7 @@ export const CORSAction = defineAction({
     run(args) {
         const action = args.rootContext.target as Action & { src: string };
         if (action.src) {
-            throw new Error("设计中");
+            window.open(action.src, "_blank");
         }
     },
 });

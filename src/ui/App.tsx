@@ -1,10 +1,10 @@
-import { ajaxSource } from "../detect/Ajax";
 import { Root, CommandPalette, Action } from "@cn-ui/command-palette";
 import { Atom, atom, reflect } from "@cn-ui/use";
 import { defineAction } from "@cn-ui/command-palette";
 import { videoDetect, mediaStore, audioDetect } from "../detect/media";
 import { Component, createEffect, onMount, Show } from "solid-js";
 import { downloadActions } from "../downloader";
+import { ajaxSource } from "../detect/Ajax.light";
 
 import style from "@cn-ui/command-palette/pkg-dist/style.css?inline";
 
@@ -18,9 +18,6 @@ const detect = () => {
 };
 
 export const App = () => {
-    onMount(() => {
-        detect();
-    });
     const titleLimit = 50;
     const processText = (str: string) => {
         return str.length >= titleLimit
