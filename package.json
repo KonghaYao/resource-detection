@@ -36,15 +36,7 @@
     "dependencies": {
         "@cn-ui/command-palette": "^2.1.0",
         "@cn-ui/use": "^1.2.0",
-        "@ffmpeg/ffmpeg": "^0.11.5",
         "@fontsource/material-icons": "^4.5.4",
-        "@mswjs/interceptors": "^0.17.5",
-        "@pollyjs/adapter-fetch": "^6.0.5",
-        "@pollyjs/adapter-xhr": "^6.0.5",
-        "@pollyjs/core": "^6.0.5",
-        "@pollyjs/persister": "^6.0.5",
-        "@pollyjs/persister-local-storage": "^6.0.5",
-        "@pollyjs/persister-rest": "^6.0.5",
         "@solidjs/router": "^0.4.3",
         "buffer": "^6.0.3",
         "copy-to-clipboard": "^3.3.2",
@@ -53,11 +45,8 @@
         "lodash-es": "^4.17.21",
         "m3u8-parser": "^6.0.0",
         "mitt": "^3.0.0",
-        "nise": "^5.1.1",
+        "net-mock": "^1.1.2",
         "solid-transition-group": "^0.0.11",
-        "streamsaver": "^2.0.6",
-        "style-inject": "^0.3.0",
-        "tinykeys": "^1.4.0",
-        "web-streams-polyfill": "^3.2.1"
+        "tinykeys": "^1.4.0"
     }
 }

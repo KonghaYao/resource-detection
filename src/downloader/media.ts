@@ -26,6 +26,7 @@ export const MediaAll = defineAction({
                 `video[src='${action.src}']`
             );
             AutoLoad(origin, dom).then(() => {
+                console.log("下载完成");
                 saveRecord(origin, action.src);
             });
         } else {

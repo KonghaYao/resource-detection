@@ -11,5 +11,26 @@
         await import("self");
         await import("./demo/index.tsx");
         setTimeout(() => {}, 500);
+        //创建xhr对象
+        let xhr = new XMLHttpRequest();
+        //打开链接,对应参数: "请求类型","请求url"，“是否异步处理”
+        xhr.open("get", "/", true);
+        //监听回调
+        xhr.onreadystatechange = function () {
+            //readyState状态为4时代表请求完成
+            if (xhr.readyState == 4) {
+                //http请求状态码200-300一般代表成功，304代表资源未改动，从缓存读取
+                if (
+                    (xhr.status >= 200 && xhr.status < 300) ||
+                    xhr.status == 304
+                ) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.log("Request was unsuccessful: " + xhr.status);
+                }
+            }
+        };
+        //发送请求
+        xhr.send(null);
     </script>
 </html>

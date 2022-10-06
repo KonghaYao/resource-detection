@@ -26,22 +26,18 @@ export default defineConfig(({ mode }) => {
             port: 3000,
         },
         define: {
-            global: "globalThis",
+            // global: "globalThis",
             __GlobalID__: JSON.stringify("948347934738"),
         },
         resolve: {
             alias: {
-                "@sinonjs/commons": "./src/detect/sinon_polyfill.cjs",
-                "@sinonjs/text-encoding": "./src/detect/sinon_polyfill.cjs",
                 self:
                     mode === "preview"
                         ? "./dist/index.umd.js"
                         : "./src/index.ts",
                 // 修复 global 的问题
-                globalThis: "global",
-                // "@pollyjs/": "https://cdn.skypack.dev/@pollyjs/",
+                // globalThis: "global",
             },
-            // mainFields: ["browser", "module", "jsnext:main", "jsnext"],
         },
 
         optimizeDeps: {
@@ -59,7 +55,7 @@ export default defineConfig(({ mode }) => {
                 formats: ["umd"],
                 fileName: "index",
             },
-            sourcemap: false,
+            sourcemap: true,
         },
     };
 });

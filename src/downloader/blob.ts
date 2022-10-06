@@ -24,7 +24,11 @@ export const AutoLoad = async (
                 if (last === a) return;
                 video.currentTime = a;
                 last = a;
-                console.log((a * 100) / origin.duration, "%");
+                const percent = (a * 100) / origin.duration;
+                if (percent > 100) {
+                    resolve(null);
+                }
+                console.log("Auto View", (a * 100) / origin.duration, "%");
             } catch (e) {
                 setTimeout(() => {
                     update();
