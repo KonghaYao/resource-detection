@@ -10,6 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.3.2"
+    "@astrojs/solid-js": "^2.1.0",
+    "@astrojs/tailwind": "^3.1.1",
+    "@cn-ui/animate": "^1.0.5",
+    "@cn-ui/core": "^1.7.1",
+    "@cn-ui/use": "^2.0.4",
+    "astro": "^2.3.2",
+    "solid-js": "^1.4.3",
+    "tailwindcss": "^3.0.24"
   }
 }

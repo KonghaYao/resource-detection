@@ -1,0 +1,12 @@
+---
+---
+
+<body>
+    <script>
+        addEventListener("message", (e) => {
+            const data = JSON.parse(e.data);
+            console.log(data);
+            document.body.innerHTML = data.content;
+        });
+    </script>
+</body>
