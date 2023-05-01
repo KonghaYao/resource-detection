@@ -1,13 +1,16 @@
 import { atom, resource, useEffectWithoutFirst } from "@cn-ui/use";
 import { Render } from "../render";
-import { CrawlerAPI, CrawlerConfig } from "../../api/crawler";
+import {
+    CrawlerAPI,
+    CrawlerInputConfig,
+    CrawlerResult,
+} from "../../api/crawler";
 
 export const CrawlTestPage = () => {
-    const data = atom<CrawlerConfig | null>(null);
-    const testRunner = resource(
+    const data = atom<CrawlerInputConfig | null>(null);
+    const testRunner = resource<CrawlerResult>(
         async () => {
-            if (data()) return CrawlerAPI.crawl(data()!);
-            return;
+            return CrawlerAPI.crawl(data()!);
         },
         { immediately: false }
     );

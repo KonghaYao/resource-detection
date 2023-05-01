@@ -1,6 +1,6 @@
 {
     "tasks": {
-        "dev": "deno run --watch --allow-all main.ts",
+        "dev": "deno run --watch --allow-all --unstable main.ts",
         "d": "deployctl deploy --project=book-server main.ts"
     }
 }
